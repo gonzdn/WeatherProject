@@ -27,7 +27,8 @@ namespace InterviewProject
                 configuration.RootPath = "ClientApp/build";
             });
 
-            services.AddDIConfiguration(Configuration);
+            services.AddDIConfiguration(Configuration)
+                    .AddSwaggerConfiguration(Configuration);
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -35,6 +36,7 @@ namespace InterviewProject
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwaggerConfiguration();
             }
             else
             {

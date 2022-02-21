@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using interviewproject.api.application.DTO;
+using interviewproject.api.application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -17,10 +19,12 @@ namespace InterviewProject.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly IWeatherAppService _weatherAppService;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IWeatherAppService weatherAppService)
         {
             _logger = logger;
+            _weatherAppService = weatherAppService;
         }
 
         [HttpGet]
@@ -34,6 +38,20 @@ namespace InterviewProject.Controllers
                 Summary = Summaries[rng.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+
+        [HttpGet]
+        [Route("GetLocationSearch")]
+        public async Task<IEnumerable<LocationSearchResponseDTO>> GetLocationSearch(string query)
+        {
+            return await _weatherAppService.LocationSearch(query);
+        }
+
+        [HttpGet]
+        [Route("GetSearch")]
+        public async Task<SearchResponseDTO> GetSearch(string woeid)
+        {
+            return await _weatherAppService.Search(woeid);
         }
     }
 }
