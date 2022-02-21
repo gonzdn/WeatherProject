@@ -28,7 +28,8 @@ namespace InterviewProject
             });
 
             services.AddDIConfiguration(Configuration)
-                    .AddSwaggerConfiguration(Configuration);
+                    .AddSwaggerConfiguration(Configuration)
+                    .AddJwtConfiguration(Configuration);
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -49,6 +50,8 @@ namespace InterviewProject
             app.UseSpaStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthConfiguration();
 
             app.UseEndpoints(endpoints =>
             {

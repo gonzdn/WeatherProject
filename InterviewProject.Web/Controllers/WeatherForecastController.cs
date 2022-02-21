@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using interviewproject.api.application.DTO;
 using interviewproject.api.application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -40,6 +41,7 @@ namespace InterviewProject.Controllers
             .ToArray();
         }
 
+        [Authorize]
         [HttpGet]
         [Route("GetLocationSearch")]
         public async Task<IEnumerable<LocationSearchResponseDTO>> GetLocationSearch(string query)
@@ -47,6 +49,7 @@ namespace InterviewProject.Controllers
             return await _weatherAppService.LocationSearch(query);
         }
 
+        [Authorize]
         [HttpGet]
         [Route("GetSearch")]
         public async Task<SearchResponseDTO> GetSearch(string woeid)
