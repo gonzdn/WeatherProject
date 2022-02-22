@@ -6,6 +6,13 @@ namespace interviewproject.api.infraestructure.Services
 {
     public class Service
     {
+        private readonly HttpClient _client;
+
+        public Service(HttpClient client)
+        {
+            _client = client;
+        }
+
         protected async Task<T> ResponseProcess<T>(HttpResponseMessage response)
         {
             response.EnsureSuccessStatusCode();
@@ -18,9 +25,8 @@ namespace interviewproject.api.infraestructure.Services
 
         protected async Task<HttpResponseMessage> GetRequest(string url)
         {
-            var http = new HttpClient();
-            http.BaseAddress = new System.Uri(url);
-            return await http.GetAsync(string.Empty);
+            _client.BaseAddress = new System.Uri(url);
+            return await _client.GetAsync(string.Empty);
         }
     }
 }

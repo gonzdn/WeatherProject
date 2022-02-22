@@ -4,6 +4,7 @@ using interviewproject.api.domain.Model.Request;
 using interviewproject.api.domain.Model.Response;
 using Microsoft.Extensions.Options;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace interviewproject.api.infraestructure.Services
@@ -11,7 +12,7 @@ namespace interviewproject.api.infraestructure.Services
     public class WeatherService : Service, IWeatherService
     {
         private readonly WeatherAPI _weatherAPI;
-        public WeatherService(IOptions<WeatherAPI> weatherAPI)
+        public WeatherService(IOptions<WeatherAPI> weatherAPI, HttpClient client) : base(client)
         {
             _weatherAPI = weatherAPI.Value;
         }

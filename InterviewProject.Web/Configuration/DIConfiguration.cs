@@ -6,6 +6,9 @@ using interviewproject.api.infraestructure.Services;
 using InterviewProject.Constants;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Polly;
+using Polly.Extensions.Http;
+using System.Net.Http;
 
 namespace InterviewProject.Configuration
 {
@@ -16,9 +19,16 @@ namespace InterviewProject.Configuration
             services.Configure<WeatherAPI>(configuration.GetSection(APIConstants.WeatherAPISection));
 
             services.AddScoped<IWeatherAppService, WeatherAppService>();
-            services.AddScoped<IWeatherService, WeatherService>();
+            services.AddHttpClient<IWeatherService, WeatherService>().AddPolicyHandler(GetRetryPolicy());
 
             return services;
+        }
+
+        static IAsyncPolicy<HttpResponseMessage> GetRetryPolicy()
+        {
+            return HttpPolicyExtensions
+                .HandleTransientHttpError()
+                .RetryAsync(3);
         }
     }
 }

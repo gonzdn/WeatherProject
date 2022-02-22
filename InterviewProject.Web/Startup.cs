@@ -1,4 +1,5 @@
 using InterviewProject.Configuration;
+using InterviewProject.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
@@ -20,8 +21,11 @@ namespace InterviewProject
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllersWithViews();
-            
+            services.AddControllersWithViews(option =>
+            {
+                option.Filters.Add(typeof(HttpGlobalExceptionFilter));
+            });
+
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/build";
