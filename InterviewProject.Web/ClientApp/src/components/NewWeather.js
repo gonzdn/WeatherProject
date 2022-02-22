@@ -36,7 +36,7 @@ function NewWeather() {
 
     const validate200Status = (status) => {
         if (status == 401) {
-            setErrorMsg("Not authorized, please login by visiting Home and then come back.")
+            setErrorMsg("Not authorized, please go to login page and then come back.")
             setLoading(false);
             setError(true);
             return false;
