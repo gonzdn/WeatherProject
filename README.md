@@ -21,3 +21,7 @@ Project made to get weather forecasts on a specific location
 ## How this works
 The project searchs for 5 forecasts on a specific location from [Metaweather API](https://www.metaweather.com/api/)
 Token expires after 15 minutes, to get authorization you need to visit the Login page and then go back to NewWeather page to search for your location.
+
+![search](https://user-images.githubusercontent.com/33834324/155048369-83142488-19f7-41a7-ae3d-ba7df3bb074a.PNG)
+
+![result](https://user-images.githubusercontent.com/33834324/155048373-dca45a7e-b690-4c26-b139-981748159f78.PNG)
