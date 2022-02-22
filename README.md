@@ -20,4 +20,4 @@ Project made to get weather forecasts on a specific location
 
 ## How this works
 The project searchs for 5 forecasts on a specific location from [Metaweather API](https://www.metaweather.com/api/)
-Token expires after 15 minutes, to get authorization you need to visit the Home page and then go back to NewWeather page.
+Token expires after 15 minutes, to get authorization you need to visit the Login page and then go back to NewWeather page to search for your location.
