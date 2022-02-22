@@ -3,13 +3,12 @@ Project made to get weather forecasts on a specific location
 
 ## Technologies
 
-- C#
-- .NET 3.0
-- Mapster
-- JWT
-- Swagger
-- React Components
-- React Hooks 
+| Technologies | Technologies |
+| --- | --- |
+| C# | Swagger |
+| .NET Core 3.0 | React Hooks |
+| Mapster | Polly |
+| JWT | Unit Tests |
 
 ## Installation
 
